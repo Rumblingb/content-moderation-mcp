@@ -1,0 +1,25 @@
+{
+  "name": "agentpay-content-moderation-mcp",
+  "version": "1.0.0",
+  "description": "MCP server: Content moderation for AI agents — spam, toxicity, PII, profanity, and NSFW detection",
+  "main": "server.py",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "content-moderation",
+    "nsfw",
+    "spam-detection",
+    "pii-detection",
+    "profanity-filter",
+    "toxicity",
+    "ai-agent",
+    "agentpay"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rumblingb/content-moderation-mcp.git"
+  },
+  "homepage": "https://rumblingb.github.io/content-moderation-mcp/",
+  "author": "AgentPay Labs",
+  "license": "MIT"
+}

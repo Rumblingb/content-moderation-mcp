@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Moderation API — AgentPay Labs</title>
+  <style>
+    :root { --bg: #0f0f1a; --card: #1a1a2e; --accent: #7c3aed; --accent2: #3b82f6; --text: #e2e8f0; --muted: #94a3b8; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background: var(--bg); color: var(--text); line-height:1.6; min-height:100vh; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem; }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 0; border-bottom:1px solid rgba(255,255,255,0.1); }
+    nav .logo { font-weight:700; font-size:1.25rem; background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    nav a { color: var(--muted); text-decoration:none; font-size:0.875rem; transition:color .2s; }
+    nav a:hover { color: var(--text); }
+    .hero { text-align:center; padding:4rem 0 3rem; }
+    .hero h1 { font-size:clamp(2rem,5vw,3rem); font-weight:800; margin-bottom:1rem; }
+    .hero h1 span { background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .hero p { font-size:1.15rem; color: var(--muted); max-width:650px; margin:0 auto 2rem; }
+    .cta { display:inline-flex; align-items:center; gap:.5rem; background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; padding:.75rem 2rem; border-radius:8px; text-decoration:none; font-weight:600; transition:transform .2s,box-shadow .2s; }
+    .cta:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(124,58,237,.3); }
+    .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; margin:3rem 0; }
+    .feature { background:var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.5rem; transition:border-color .2s; }
+    .feature:hover { border-color:var(--accent); }
+    .feature .icon { font-size:2rem; margin-bottom:.5rem; }
+    .feature h3 { font-size:1.1rem; margin-bottom:.5rem; }
+    .feature p { font-size:.875rem; color:var(--muted); }
+    .pricing { display:flex; gap:2rem; justify-content:center; margin:4rem 0; flex-wrap:wrap; }
+    .plan { background:var(--card); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:2rem; min-width:300px; flex:1; max-width:400px; }
+    .plan.pro { border-color:var(--accent); position:relative; }
+    .plan.pro::before { content:"Popular"; position:absolute; top:-.75rem; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,var(--accent),var(--accent2)); padding:.25rem 1rem; border-radius:99px; font-size:.75rem; font-weight:600; }
+    .plan h3 { font-size:1.25rem; margin-bottom:.5rem; }
+    .plan .price { font-size:2.5rem; font-weight:800; }
+    .plan .price span { font-size:1rem; font-weight:400; color:var(--muted); }
+    .plan ul { list-style:none; margin:1.5rem 0; }
+    .plan ul li { padding:.35rem 0; font-size:.9rem; color:var(--muted); }
+    .plan ul li::before { content:"✓ "; color:#22c55e; font-weight:700; }
+    .plan .btn { display:block; text-align:center; background:var(--accent); color:#fff; padding:.75rem; border-radius:8px; text-decoration:none; font-weight:600; transition:background .2s; }
+    .plan .btn:hover { background:#6d28d9; }
+    .plan .btn.outline { background:transparent; border:1px solid rgba(255,255,255,0.2); color:var(--text); }
+    .plan .btn.outline:hover { border-color:var(--accent); }
+    .code-block { background:#111; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.5rem; margin:2rem 0; overflow-x:auto; }
+    .code-block pre { font-family:'Fira Code','Cascadia Code',monospace; font-size:.85rem; color:#a5f3fc; }
+    .code-block .comment { color:#6b7280; }
+    .code-block .keyword { color:#c084fc; }
+    .code-block .string { color:#22d3ee; }
+    footer { text-align:center; padding:2rem 0; border-top:1px solid rgba(255,255,255,0.08); color:var(--muted); font-size:.85rem; }
+    footer a { color:var(--accent); text-decoration:none; }
+    .badge { display:inline-block; background:rgba(124,58,237,.15); color:var(--accent); padding:.15rem .5rem; border-radius:4px; font-size:.75rem; font-weight:600; margin-right:.25rem; }
+    @media(max-width:600px) { .pricing { flex-direction:column; align-items:center; } .plan { max-width:100%; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div class="logo">AgentPay Labs</div>
+      <a href="https://github.com/Rumblingb/content-moderation-mcp">GitHub →</a>
+    </nav>
+
+    <section class="hero">
+      <h1>Content Moderation <span>API</span></h1>
+      <p>AI-powered content moderation for your agents. Detect spam, toxicity, PII, profanity, and NSFW content in one call. No paid API keys needed — rule-based and free.</p>
+      <a href="https://buy.stripe.com/5kQ8wR0qXbg05zGdjl1oI0C" class="cta">Subscribe $19/mo →</a>
+    </section>
+
+    <div class="features">
+      <div class="feature">
+        <div class="icon">🛡️</div>
+        <h3>Spam Detection</h3>
+        <p>Detect spam, scams, crypto giveaways, repeated phrases, and all-caps spam with pattern matching.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">⚠️</div>
+        <h3>Toxicity Check</h3>
+        <p>Identify hate speech, harassment, self-harm content, and toxic language with comprehensive regex rules.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔒</div>
+        <h3>PII Redaction</h3>
+        <p>Detect emails, phone numbers, SSNs, credit cards, IPs, crypto addresses, and API keys with masked output.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🤬</div>
+        <h3>Profanity Filter</h3>
+        <p>Comprehensive profanity detection with leetspeak variants and fuzzy matching patterns.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🖼️</div>
+        <h3>Image Analysis</h3>
+        <p>NSFW detection via pixel heuristics, dimension analysis, and image fingerprinting. Free tier included.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📊</div>
+        <h3>Detailed Reports</h3>
+        <p>Each moderation returns severity levels, matched patterns, match counts, and overall safety assessment.</p>
+      </div>
+    </div>
+
+    <div class="pricing">
+      <div class="plan">
+        <h3>Free</h3>
+        <div class="price">$0 <span>/mo</span></div>
+        <ul>
+          <li>50 moderation calls</li>
+          <li>Text &amp; image moderation</li>
+          <li>All detection types</li>
+          <li>Rate-limited per restart</li>
+        </ul>
+        <a href="https://github.com/Rumblingb/content-moderation-mcp" class="btn outline">Get Started →</a>
+      </div>
+      <div class="plan pro">
+        <h3>Pro</h3>
+        <div class="price">$19 <span>/mo</span></div>
+        <ul>
+          <li>Unlimited moderation calls</li>
+          <li>Text &amp; image moderation</li>
+          <li>Priority support</li>
+          <span class="badge">NEW</span> Dedicated pro key
+        </ul>
+        <a href="https://buy.stripe.com/5kQ8wR0qXbg05zGdjl1oI0C" class="btn">Subscribe →</a>
+      </div>
+    </div>
+
+    <h2 style="margin-top:3rem;">Quick Start</h2>
+    <div class="code-block">
+      <pre>
+<span class="comment"># Install</span>
+pip install mcp anyio
+
+<span class="comment"># Run (free tier — 50 calls)</span>
+python3 server.py
+
+<span class="comment"># Run (pro tier — unlimited)</span>
+python3 server.py --pro-key PROL_AGENTPAY_DEMO</pre>
+    </div>
+
+    <h2>MCP Tools</h2>
+    <div class="code-block">
+      <pre>
+<span class="comment"># moderate_text — Detect spam, toxicity, PII, profanity</span>
+{
+  "text": "Check this text for issues",
+  "check_types": ["spam", "toxicity", "pii"]
+}
+
+<span class="comment"># moderate_image — NSFW detection via heuristics</span>
+{
+  "image_data": "&lt;base64_encoded_image&gt;"
+}
+
+<span class="comment"># get_moderation_stats — Check usage and tier</span>
+{}</pre>
+    </div>
+
+    <footer>
+      <p>Built by <a href="https://github.com/Rumblingb">Visha</a> · AgentPay Labs · MIT License</p>
+      <p style="margin-top:.5rem;"><a href="https://github.com/Rumblingb/content-moderation-mcp">GitHub</a> · <a href="https://buy.stripe.com/5kQ8wR0qXbg05zGdjl1oI0C">Buy Pro</a></p>
+    </footer>
+  </div>
+</body>
+</html>
